@@ -25,7 +25,6 @@ allowed_statuses = [
 
 
 def colnum_to_excel_col(n):
-   #Convert 0-based column index to Excel column letter(s)."""
     result = ''
     n += 1
     while n:
@@ -36,7 +35,7 @@ def colnum_to_excel_col(n):
 
 report = {}
 
-#1. check for Items per section per intended_form with totals
+#1. check for items per section per intended_form with totals
 items_per_form_section = df.groupby(['intended_form', 'section']).size().unstack(fill_value=0)
 items_with_totals = items_per_form_section.copy()
 items_with_totals.loc['Total'] = items_per_form_section.sum()
@@ -131,7 +130,7 @@ report['not_ready_items'] = not_ready[
 
 print("Number of items in not_ready_items:", len(report['not_ready_items'])) #debug
 
-#summary data for terminal
+#summary data
 report['summary'] = pd.DataFrame({
     'Check' : [
         'Equal number of items per section',
